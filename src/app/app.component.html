@@ -1,5 +1,5 @@
 <h1 class="animate__animated animate__fadeInDown">{{title}}</h1>
-<ul>
+<ul class="animate__animated animate__fadeIn" *ngIf="mode == 'list'">
   <p><small *ngIf="todos.length == 0">Você ainda não tem nenhuma tarefa hoje!</small></p>
   <!-- ngFor é o for do javascript, aqui ele ta percorrendo todos os elementos do todos -->
   <li *ngFor="let todo of todos"> {{todo.title}} 
@@ -9,14 +9,23 @@
     <button (click)="remove(todo)">Remover</button> 
   </li>
 </ul>
-
-<!-- bind do TS > HTML -->
-<form [formGroup]="form">
-  <fieldset>
-    <label for="">Tarefa: </label>
-    <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
-<!-- Alteração de propriedades sempre com colchetes| pristine significa se foi modificado-->
+<div id="modal" *ngIf="mode=='add'" class="animate__animated animate__flipInX">
+  <!-- bind do TS > HTML -->
+  <form [formGroup]="form">
+    <fieldset>
+      <label for="">Tarefa: </label>
+      <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
+      <!-- Alteração de propriedades sempre com colchetes| pristine significa se foi modificado-->
       <small *ngIf="form.controls['title'].invalid && !form.controls['title'].pristine">Este campo deve conter entre 3 e 60 caracteres</small>      
       <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
+</div>
+
+<button class="add-button animate__animated animate__fadeInUp button" (click)="changeMode('add')" *ngIf="mode=='list'">
+  <i class="fa fa-pen">  </i>
+     NOVA TAREFA
+</button>
+<button class="add-button animate__animated animate__fadeInUp button" (click)="changeMode('list')" *ngIf="mode=='add'">
+  CANCELAR
+</button>

@@ -8,6 +8,7 @@ import { Todo } from 'src/models/todo.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  public mode = 'list'
   public todos: Todo[] = []; // any é como se fosse um objeto [] sinaliza que é um array
   public title: String='Minhas tarefas'
   public form: FormGroup;
@@ -65,5 +66,9 @@ export class AppComponent {
   load(){
     const data = localStorage.getItem('todos')
     this.todos = JSON.parse(data || '[]')
+  }
+
+  changeMode(mode: string){
+    this.mode = mode
   }
 }
