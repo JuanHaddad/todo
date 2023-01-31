@@ -1,0 +1,26 @@
+{
+    "name": "To-do App",
+    "runArgs": [
+        "--name",
+        "todo-app"
+    ],
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+
+        }
+    },
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "eamodio.gitlens"
+            ]
+        }
+    },
+    "forwardPorts": [4200],
+    "postCreateCommand": "/home/../etc/install_script.sh",
+    "mounts": [
+        "source=todo-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    ]
+}
