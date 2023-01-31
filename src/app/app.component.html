@@ -12,20 +12,19 @@
 <div id="modal" *ngIf="mode=='add'" class="animate__animated animate__flipInX">
   <!-- bind do TS > HTML -->
   <form [formGroup]="form">
-    <fieldset>
       <label for="">Tarefa: </label>
       <input type="text" placeholder="Título da tarefa" maxlength="60" formControlName="title">
       <!-- Alteração de propriedades sempre com colchetes| pristine significa se foi modificado-->
       <small *ngIf="form.controls['title'].invalid && !form.controls['title'].pristine">Este campo deve conter entre 3 e 60 caracteres</small>      
       <button class="button" [disabled]="form.invalid" (click)="add()">Salvar</button>
-    </fieldset>
   </form>
 </div>
 
 <button class="add-button animate__animated animate__fadeInUp button" (click)="changeMode('add')" *ngIf="mode=='list'">
-  <i class="fa fa-pen">  </i>
+  <i class="fa fa-pen"></i>
      NOVA TAREFA
 </button>
 <button class="add-button animate__animated animate__fadeInUp button" (click)="changeMode('list')" *ngIf="mode=='add'">
+  <i class="fas fa-xmark"></i>
   CANCELAR
 </button>
