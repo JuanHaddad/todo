@@ -10,7 +10,6 @@ import { Todo } from 'src/models/todo.model';
 export class AppComponent {
   public mode = 'list'
   public todos: Todo[] = []; // any é como se fosse um objeto [] sinaliza que é um array
-  public title: String='Minhas tarefas'
   public form: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -60,6 +59,7 @@ export class AppComponent {
     const data = JSON.stringify(this.todos)
     // ele pede chave e valor
     localStorage.setItem('todos', data)
+    this.mode = 'list'
   }
 
   // esse método converte string em JSON
